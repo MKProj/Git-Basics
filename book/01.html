@@ -171,6 +171,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="basic-workflows-in-git"><a class="header" href="#basic-workflows-in-git">Basic Workflows in Git</a></h1>
+<hr />
+<h2 id="initializing-a-repo"><a class="header" href="#initializing-a-repo">Initializing a Repo</a></h2>
+<p>To start a git repository, you must first initialize the directory in which the project is located in. To do this 
+you will need to use the <code>git init</code> command on the terminal (Mac/Linux) or command prompt (Windows). This command 
+creates a <code>.git</code> folder that contains all the tools and data necessary to contain various versions of our project. </p>
+<h2 id="adding-changes"><a class="header" href="#adding-changes">Adding Changes</a></h2>
+<p>To add a file's changes to the staging area, you will need to use the <code>git add</code> command, and use it 
+like the following:</p>
+<pre><code class="language-bash">$ git add &lt;file&gt;
+</code></pre>
+<p>If you want to add all the files, then use the wildcard, <code>git add *</code>. </p>
+<p>Now let's say there's files or directory you don't want added to the git repository (possibly build directories or large files), 
+you can create a <code>.gitignore</code> file, and in it add the files or directories you want ignored. </p>
+<pre><code># .gitignore
+example_directory/
+example.txt
+*.zip # this will ignore all zip files 
+</code></pre>
 
                     </main>
 
