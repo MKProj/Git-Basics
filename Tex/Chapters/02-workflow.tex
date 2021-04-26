@@ -1,0 +1,74 @@
+\chapter{Basic Workflows in Git}
+
+\section{Initializing a Repo}
+To start a git repository, you must first initialize the directory in which the project is located in. 
+To do this you will need to use the \verb!git init! command on the terminal (Mac/Linux) or command prompt (Windows). 
+This command creates a \verb!.git! folder that contains all the tools and data necessary to contain various versions of our project. 
+
+\section{Adding Changes}
+To add a file's changes to the staging area, you will need to use the \verb!git add! command, like the following:
+\\
+\verb!$ git add <file>!
+\\
+If you want to add all the files, then use the wildcard, \verb!git add *!. 
+\\\\
+Now let's say there's files or directory you don't want added to the git repository 
+(possibly build directories or large files), you can create a \verb!.gitignore! file,
+and in it add the files or directories you want ignored. 
+\\\\
+\textit{.gitignore example}
+\begin{verbatim}
+    example_directory/
+    example.txt
+    *.zip # this will ignore all zip files
+\end{verbatim}
+\newpage
+\section{Committing Changes and Checking Status}
+So let's say you're satisfied with the changes you've made to the various files you've worked on. 
+You could first see which file has been changed, and/or changes been added, once you've added the 
+files that's had their changes made, what now? Well when you add these files, they're in a staging area, 
+to commit these changes to the repository, well it's exactly what you think, use \verb!git commit!. 
+\\\\
+Common Usages: 
+\begin{verbatim}
+    git commit -m "A nice message about changes" # Standard commit command 
+    git commit -a -m "A nice message about changes + git add" # Adds and commits
+\end{verbatim}
+
+\section{Differences and Logs}
+Let's say you want to figure out the different changes between a file from the directory and the
+staging area version of the file, well as straightforward the commands are, it is the git diff command,
+and all you need to do is \verb!git diff <file>!. 
+\\
+Now let's say you want to view the various commits that you've done in the git repository, use the 
+\verb!git log! command, and it will show you the commits you've done with the following information:
+\begin{itemize}
+    \item A 40-character code (SHA), that creates a unique id for the commit
+    \item The commit author
+    \item The date and time of which the commit occurred 
+    \item The message written on the commit 
+\end{itemize}
+Here's an example of a git log done on this repo: 
+\begin{verbatim}
+commit e5af29e89846a396690e9d73d771ef6b298ca1a0 (HEAD -> main)
+Author: mustafif0929@gmail.com <mustafif0929@gmail.com>
+Date:   Thu Apr 22 22:37:33 2021 -0400
+
+    update
+
+commit 3fc278bcf2e74d151ead9192ef1991a235044c71 (origin/main)
+Author: mustafif0929@gmail.com <mustafif0929@gmail.com>
+Date:   Thu Apr 22 22:21:18 2021 -0400
+
+    first commit
+\end{verbatim}
+
+\section{Git Project Workflow}
+A Git Project contains the following three parts: 
+\begin{enumerate}
+    \item Working Directory: where files are created, edited, deleted and organized (worked on).
+    \item Staging Area: where changes that are made to the working directory is listed
+    \item Repository: where Git permanently stores changes as different versions of the project
+\end{enumerate}
+The Git workflow consists of editing files in the working directory, adding files to the staging area, and committing changes to a Git repository. 
+\newpage

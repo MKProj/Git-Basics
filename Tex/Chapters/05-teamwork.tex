@@ -1,0 +1,119 @@
+\chapter{Teamwork in Git}
+\section{Git Remote}
+
+When you work in a group, it is typical to collaborate with others using a Git server, or a website like Github (highly recommended).
+
+A \verb!remote! is essentially a shared Git repository that allows for multiple collaborators.
+Now keep in mind collaborators work independently, and merge their changes when ready. 
+
+\section{Cloning a Remote Repository}
+Now how do you get to work on your partner's git repository...on let's say your organization's github? Well why not clone the repository using \verb!git clone!.
+
+It works locally:
+\begin{verbatim}
+$ ls
+git-repository
+
+# git clone remote-repo output-directory(optional)    
+$ git clone git-project/ git-clone-project 
+Cloning into 'git-clone-project'...
+done. 
+    
+$ ls
+git-clone-project git-project
+\end{verbatim}
+It works on remote sites, such as Github:
+\begin{verbatim}
+# HTTP Clone
+$ git clone https://github.com/user/repo.git
+
+# SSH Clone
+$ git clone git@github.com:user/repo.git
+\end{verbatim}
+
+\section{Fetching Changes}
+The command \verb!git fetch! downloads objects and changes from a remote repository \verb!origin!.
+
+It however doesn't automatically merge these changes to your current branch, but instead keeps all the changes in a new branch \verb!origin/branch-name!.
+\\
+Now let's see this in action: 
+\begin{verbatim}
+$ git branch
+* master
+
+$ git fetch
+remote: Counting objects: 3, done. 
+remote: Compressing objects: 100% (3/3), done. 
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done. 
+From /home/user/git-project 
+* [new branch]      master     ->  origin/master
+
+$ git branch
+* master
+  remotes/origin/master
+\end{verbatim}
+To merge these changes, it's like last section, use the command, \verb!git merge! in the branch you want to have merge with the target branch.
+
+To merge the fetch changes for our example, we do \verb!git merge origin/master! on branch \verb!master!. 
+
+\section{Pushing Changes}
+In Git, the \verb!git push origin branch-name! command pushes the branch \verb!branch-name!, and all of the committed changes, 
+to the remote \verb!origin!. This branch can now be reviewed and fetched by collaborators.
+
+\section{Looking at the Remotes}
+In Git, the \verb!git-remote -v! command returns a list of remote repositories that the current project is connected to.
+\begin{itemize}
+    \item Git lists the name of the remote repository as well as its locations.
+    \item Git automatically names this remote origin, because it refers to the remote repository of origin.
+        \begin{itemize}
+            \item However, it is possible to safely change its name.
+        \end{itemize}
+    \item The remote is listed twice: once for (fetch) and once for (push).
+\end{itemize}
+
+\begin{verbatim}
+$ git-remote -v 
+origin  /home/user/git-project/
+(fetch)
+origin  /home/user/git-project/
+(push)
+\end{verbatim}
+        
+    
+\section{A Typical Collaboration Workflow}
+A typical collaboration workflow is:
+\begin{enumerate}
+    \item Fetch and merge changes from the remote
+    \item Create a branch to work on a new project feature
+    \item Develop the feature on a branch and commit the work
+    \item Fetch and merge from the remote again (in case new commits were made)
+    \item Push branch up to the remote for review
+\end{enumerate}
+\textit{Note: Steps 1 and 4 are a safeguard against merge conflicts, which occur when two branches contain file changes that cannot be merged with the git merge command.}
+\\\\
+Here's a bash script that can be made to ease the need of the many commands: 
+
+\begin{verbatim}
+#!/bin/bash
+git fetch
+git merge origin/master 
+
+echo "New Branch Name: "
+read branch
+
+git branch $branch
+git checkout $branch
+
+git fetch
+git add * 
+
+echo "Message: "
+read message
+
+git commit -m $message
+
+git merge origin/master
+
+git push -u origin $branch
+\end{verbatim}
