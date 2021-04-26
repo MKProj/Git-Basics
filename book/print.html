@@ -399,6 +399,13 @@ git branch $branch
 git checkout $branch
 
 git fetch
+git add * 
+
+echo &quot;Message: &quot;
+read message
+
+git commit -m $message
+
 git merge origin/master
 
 git push -u origin $branch

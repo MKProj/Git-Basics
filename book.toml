@@ -4,7 +4,7 @@ author="Mustafif Khan"
 [output.html]
 preferred-dark-theme = "ayu"
 default-theme = "ayu"
-git-repository-url = "//"
+git-repository-url = "https://github.com/MKProj/Git-Basics"
 git-repository-icon = "fa-github"
 copy-fonts = true
 no-section-label = true
