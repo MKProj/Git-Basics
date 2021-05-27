@@ -1,0 +1,23 @@
+author: Mustafif Khan
+title: Git Basics
+lang: en
+
+## Output formats
+
+# Uncomment and fill to generate files
+# output.html: some_file.html
+output.epub: Git_Basics.epub
+# output.pdf: some_file.pdf
+
+# Or uncomment the following to generate PDF, HTML and EPUB files based on this file's name
+# output: [pdf, epub, html]
+
+# Uncomment and fill to set cover image (for EPUB)
+# cover: some_cover.png
+
+## List of chapters
++ ../src/00.md
++ ../src/01.md
++ ../src/02.md
++ ../src/03.md
++ ../src/04.md
